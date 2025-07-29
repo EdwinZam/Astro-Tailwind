@@ -1,0 +1,27 @@
+---
+export interface Props {
+  verse: string;
+  reference: string;
+  category: string;
+  theme: string;
+}
+
+const { verse, reference, category, theme } = Astro.props;
+---
+
+<div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 border border-spiritual-100 hover:border-spiritual-200 group">
+  <div class="flex items-center justify-between mb-3">
+    <span class="bg-spiritual-100 text-spiritual-700 px-3 py-1 rounded-full text-sm font-medium">
+      {category}
+    </span>
+    <span class="bg-gold-100 text-gold-800 px-2 py-1 rounded-full text-xs font-medium">
+      {theme}
+    </span>
+  </div>
+  
+  <blockquote class="text-gray-800 text-base leading-relaxed mb-4 font-serif italic group-hover:text-spiritual-900 transition-colors">
+    "{verse}"
+  </blockquote>
+  
+  <cite class="text-spiritual-600 font-medium text-sm">- {reference}</cite>
+</div>

@@ -1,0 +1,46 @@
+---
+import { Calendar, Heart } from 'lucide-astro';
+
+// In a real app, this would come from an API or database
+const dailyVerses = [
+  {
+    verse: "For I know the plans I have for you, declares the Lord, plans to prosper you and not to harm you, to give you hope and a future.",
+    reference: "Jeremiah 29:11",
+    theme: "Hope"
+  },
+  {
+    verse: "Cast all your anxiety on him because he cares for you.",
+    reference: "1 Peter 5:7",
+    theme: "Peace"
+  },
+  {
+    verse: "The Lord your God is with you, the Mighty Warrior who saves. He will take great delight in you; in his love he will no longer rebuke you, but will rejoice over you with singing.",
+    reference: "Zephaniah 3:17",
+    theme: "Love"
+  }
+];
+
+// Simple rotation based on day of year
+const today = new Date();
+const dayOfYear = Math.floor((today - new Date(today.getFullYear(), 0, 0)) / 1000 / 60 / 60 / 24);
+const todaysVerse = dailyVerses[dayOfYear % dailyVerses.length];
+---
+
+<div class="bg-gradient-to-r from-spiritual-50 to-gold-50 p-6 rounded-xl shadow-lg border border-spiritual-100">
+  <div class="flex items-center space-x-2 mb-4">
+    <Calendar class="w-5 h-5 text-spiritual-600" />
+    <h3 class="font-serif text-xl font-semibold text-spiritual-900">Today's Verse</h3>
+    <div class="bg-gold-100 text-gold-800 px-2 py-1 rounded-full text-xs font-medium">
+      {todaysVerse.theme}
+    </div>
+  </div>
+  
+  <blockquote class="text-spiritual-800 text-lg leading-relaxed mb-4 font-serif italic">
+    "{todaysVerse.verse}"
+  </blockquote>
+  
+  <div class="flex items-center justify-between">
+    <cite class="text-spiritual-600 font-medium">- {todaysVerse.reference}</cite>
+    <Heart class="w-5 h-5 text-gold-500 opacity-70" />
+  </div>
+</div>

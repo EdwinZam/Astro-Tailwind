@@ -1,0 +1,200 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import { Heart, Users, BookOpen, Cross } from 'lucide-astro';
+---
+
+<Layout title="About Us - Grace & Light" description="Learn about our mission to share God's love and provide spiritual encouragement through faith-based content and community.">
+  <Navbar />
+  
+  <main class="min-h-screen">
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-r from-spiritual-50 to-beige-50 py-20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center">
+          <div class="flex justify-center mb-6">
+            <Cross class="w-16 h-16 text-spiritual-600" />
+          </div>
+          <h1 class="font-serif text-4xl md:text-5xl font-bold text-spiritual-900 mb-6">
+            About Grace & Light
+          </h1>
+          <p class="text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
+            We are a community dedicated to sharing the transformative love of Jesus Christ 
+            and providing spiritual encouragement for believers in their faith journey.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section class="py-20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div>
+            <h2 class="font-serif text-3xl md:text-4xl font-bold text-spiritual-900 mb-6">
+              Our Mission
+            </h2>
+            <p class="text-lg text-gray-700 mb-6 leading-relaxed">
+              Grace & Light exists to be a beacon of hope in a world that often feels dark and uncertain. 
+              We believe that every person is beloved by God and deserves to experience His peace, love, and grace.
+            </p>
+            <p class="text-lg text-gray-700 mb-6 leading-relaxed">
+              Through carefully curated Bible verses, thoughtful reflections, and encouraging content, 
+              we aim to meet people wherever they are in their spiritual journey and point them toward 
+              the light of Christ.
+            </p>
+            <div class="flex items-center space-x-3">
+              <Heart class="w-6 h-6 text-gold-500" />
+              <span class="text-spiritual-800 font-medium italic">
+                "Let your light shine before others, that they may see your good deeds and glorify your Father in heaven." - Matthew 5:16
+              </span>
+            </div>
+          </div>
+          
+          <div class="relative">
+            <img 
+              src="https://images.pexels.com/photos/531756/pexels-photo-531756.jpeg?auto=compress&cs=tinysrgb&w=800" 
+              alt="Hands in prayer"
+              class="w-full rounded-xl shadow-lg"
+            />
+            <div class="absolute -bottom-6 -right-6 w-24 h-24 bg-gold-100 rounded-full flex items-center justify-center shadow-lg">
+              <Cross class="w-12 h-12 text-gold-600" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="py-20 bg-spiritual-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="font-serif text-3xl md:text-4xl font-bold text-spiritual-900 mb-4">
+            Our Core Values
+          </h2>
+          <p class="text-xl text-gray-700 max-w-3xl mx-auto">
+            These principles guide everything we do and shape how we serve our community.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <!-- Faith -->
+          <div class="bg-white p-8 rounded-xl shadow-lg text-center">
+            <div class="w-16 h-16 bg-spiritual-100 rounded-full flex items-center justify-center mx-auto mb-6">
+              <BookOpen class="w-8 h-8 text-spiritual-600" />
+            </div>
+            <h3 class="font-serif text-2xl font-semibold text-spiritual-900 mb-4">Scripture-Centered</h3>
+            <p class="text-gray-700 leading-relaxed">
+              God's Word is our foundation. Every piece of content is rooted in biblical truth and 
+              designed to help believers grow in their understanding of Scripture.
+            </p>
+          </div>
+
+          <!-- Love -->
+          <div class="bg-white p-8 rounded-xl shadow-lg text-center">
+            <div class="w-16 h-16 bg-gold-100 rounded-full flex items-center justify-center mx-auto mb-6">
+              <Heart class="w-8 h-8 text-gold-600" />
+            </div>
+            <h3 class="font-serif text-2xl font-semibold text-spiritual-900 mb-4">Love-Driven</h3>
+            <p class="text-gray-700 leading-relaxed">
+              Christ's love compels us to serve others with compassion, grace, and understanding. 
+              We believe love is the greatest commandment and the key to transformation.
+            </p>
+          </div>
+
+          <!-- Community -->
+          <div class="bg-white p-8 rounded-xl shadow-lg text-center">
+            <div class="w-16 h-16 bg-beige-100 rounded-full flex items-center justify-center mx-auto mb-6">
+              <Users class="w-8 h-8 text-beige-700" />
+            </div>
+            <h3 class="font-serif text-2xl font-semibold text-spiritual-900 mb-4">Community-Focused</h3>
+            <p class="text-gray-700 leading-relaxed">
+              We believe faith grows best in community. Our goal is to create a welcoming space 
+              where believers can encourage one another and grow together.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="py-20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="font-serif text-3xl md:text-4xl font-bold text-spiritual-900 mb-4">
+            Our Team
+          </h2>
+          <p class="text-xl text-gray-700 max-w-3xl mx-auto">
+            Meet the dedicated servants who help bring Grace & Light to life.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <!-- Pastor David -->
+          <div class="bg-white p-6 rounded-xl shadow-lg text-center">
+            <div class="w-24 h-24 bg-spiritual-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <span class="text-2xl font-bold text-spiritual-600">PD</span>
+            </div>
+            <h3 class="font-serif text-xl font-semibold text-spiritual-900 mb-2">Pastor David</h3>
+            <p class="text-spiritual-600 mb-3">Lead Pastor & Writer</p>
+            <p class="text-gray-700 text-sm leading-relaxed">
+              With over 15 years in ministry, Pastor David brings deep theological insight and pastoral heart to our content creation.
+            </p>
+          </div>
+
+          <!-- Sister Mary Catherine -->
+          <div class="bg-white p-6 rounded-xl shadow-lg text-center">
+            <div class="w-24 h-24 bg-gold-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <span class="text-2xl font-bold text-gold-600">MC</span>
+            </div>
+            <h3 class="font-serif text-xl font-semibold text-spiritual-900 mb-2">Sister Mary Catherine</h3>
+            <p class="text-spiritual-600 mb-3">Content Editor & Prayer Coordinator</p>
+            <p class="text-gray-700 text-sm leading-relaxed">
+              A devoted servant with a gift for writing, Sister Mary Catherine ensures our content reflects God's heart for His people.
+            </p>
+          </div>
+
+          <!-- Pastor James -->
+          <div class="bg-white p-6 rounded-xl shadow-lg text-center">
+            <div class="w-24 h-24 bg-beige-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <span class="text-2xl font-bold text-beige-700">PJ</span>
+            </div>
+            <h3 class="font-serif text-xl font-semibold text-spiritual-900 mb-2">Pastor James</h3>
+            <p class="text-spiritual-600 mb-3">Youth Pastor & Outreach Director</p>
+            <p class="text-gray-700 text-sm leading-relaxed">
+              Pastor James brings fresh perspective and connects with believers of all ages through relatable, practical teachings.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-20 bg-spiritual-900 text-white">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="font-serif text-3xl md:text-4xl font-bold mb-6">
+          Join Our Community
+        </h2>
+        <p class="text-xl text-spiritual-200 mb-8 leading-relaxed">
+          Whether you're seeking comfort, looking for spiritual growth, or wanting to connect with fellow believers, 
+          you have a place here. Let's walk this journey of faith together.
+        </p>
+        
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/contact" class="bg-gold-500 hover:bg-gold-600 text-spiritual-900 px-8 py-4 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center space-x-2">
+            <Heart class="w-5 h-5" />
+            <span>Get in Touch</span>
+          </a>
+          
+          <a href="/bible-verses" class="border-2 border-gold-400 text-gold-400 hover:bg-gold-400 hover:text-spiritual-900 px-8 py-4 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center space-x-2">
+            <BookOpen class="w-5 h-5" />
+            <span>Explore Scripture</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>

@@ -1,16 +1,164 @@
 ---
-
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import DailyVerse from '../components/DailyVerse.astro';
+import { Heart, BookOpen, Users, Cross, ArrowRight, Star } from 'lucide-astro';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout title="Grace & Light - A Christian Sanctuary">
+  <Navbar />
+  
+  <main>
+    <!-- Hero Section -->
+    <section class="relative overflow-hidden bg-gradient-to-br from-spiritual-50 via-white to-beige-50 py-20">
+      <div class="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23e0f2fe" fill-opacity="0.3"%3E%3Ccircle cx="30" cy="30" r="1"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-30"></div>
+      
+      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center">
+          <!-- Light rays effect -->
+          <div class="absolute top-10 left-1/2 transform -translate-x-1/2 w-96 h-96 opacity-20">
+            <div class="w-full h-full bg-gradient-radial from-gold-300 via-gold-200 to-transparent rounded-full animate-pulse"></div>
+          </div>
+          
+          <div class="relative z-10">
+            <div class="flex justify-center mb-6">
+              <div class="relative">
+                <Cross class="w-16 h-16 text-spiritual-600" />
+                <div class="absolute -top-2 -right-2 w-6 h-6">
+                  <div class="w-full h-full bg-gold-400 rounded-full opacity-60 animate-ping"></div>
+                </div>
+              </div>
+            </div>
+            
+            <h1 class="font-serif text-4xl md:text-6xl font-bold text-spiritual-900 mb-6 leading-tight">
+              Welcome to
+              <span class="bg-gradient-to-r from-spiritual-600 to-gold-600 bg-clip-text text-transparent">
+                Grace & Light
+              </span>
+            </h1>
+            
+            <p class="text-xl text-gray-700 max-w-3xl mx-auto mb-8 leading-relaxed">
+              A sacred space where faith flourishes, hope is renewed, and hearts find peace in God's eternal love. 
+              Join our community as we walk together in the light of Christ.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
+              <a href="/bible-verses" class="group bg-spiritual-600 hover:bg-spiritual-700 text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 flex items-center space-x-2 shadow-lg hover:shadow-xl">
+                <BookOpen class="w-5 h-5" />
+                <span>Explore Bible Verses</span>
+                <ArrowRight class="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </a>
+              
+              <a href="/blog" class="group border-2 border-spiritual-600 text-spiritual-600 hover:bg-spiritual-600 hover:text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 flex items-center space-x-2">
+                <Heart class="w-5 h-5" />
+                <span>Read Our Blog</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Daily Verse Section -->
+    <section class="py-16 bg-white">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <DailyVerse />
+      </div>
+    </section>
+
+    <!-- About Christian Faith Section -->
+    <section class="py-20 bg-gradient-to-r from-beige-50 to-spiritual-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="font-serif text-3xl md:text-4xl font-bold text-spiritual-900 mb-4">
+            The Heart of Our Faith
+          </h2>
+          <p class="text-xl text-gray-700 max-w-3xl mx-auto">
+            Christianity is not just a religion—it's a relationship with the living God through Jesus Christ. 
+            Discover the transformative power of God's love in your life.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <!-- Grace -->
+          <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 text-center group">
+            <div class="w-16 h-16 bg-spiritual-100 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-spiritual-200 transition-colors">
+              <Heart class="w-8 h-8 text-spiritual-600" />
+            </div>
+            <h3 class="font-serif text-2xl font-semibold text-spiritual-900 mb-4">Grace</h3>
+            <p class="text-gray-700 leading-relaxed">
+              God's unmerited favor flows freely to all who believe. Through grace, we are saved, forgiven, and transformed—not by our works, but by His love.
+            </p>
+            <div class="mt-6 flex justify-center">
+              <span class="bg-gold-100 text-gold-800 px-3 py-1 rounded-full text-sm font-medium">Ephesians 2:8-9</span>
+            </div>
+          </div>
+
+          <!-- Faith -->
+          <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 text-center group">
+            <div class="w-16 h-16 bg-gold-100 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-gold-200 transition-colors">
+              <Star class="w-8 h-8 text-gold-600" />
+            </div>
+            <h3 class="font-serif text-2xl font-semibold text-spiritual-900 mb-4">Faith</h3>
+            <p class="text-gray-700 leading-relaxed">
+              Faith is the bridge between our hearts and God's promises. It's trusting in what we cannot see and holding fast to eternal hope.
+            </p>
+            <div class="mt-6 flex justify-center">
+              <span class="bg-spiritual-100 text-spiritual-800 px-3 py-1 rounded-full text-sm font-medium">Hebrews 11:1</span>
+            </div>
+          </div>
+
+          <!-- Love -->
+          <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 text-center group">
+            <div class="w-16 h-16 bg-beige-100 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-beige-200 transition-colors">
+              <Users class="w-8 h-8 text-beige-700" />
+            </div>
+            <h3 class="font-serif text-2xl font-semibold text-spiritual-900 mb-4">Love</h3>
+            <p class="text-gray-700 leading-relaxed">
+              God's love is the foundation of everything. We love because He first loved us, and this love compels us to serve others with compassion.
+            </p>
+            <div class="mt-6 flex justify-center">
+              <span class="bg-beige-100 text-beige-800 px-3 py-1 rounded-full text-sm font-medium">1 John 4:19</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-20 bg-spiritual-900 text-white relative overflow-hidden">
+      <div class="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23ffffff" fill-opacity="0.1"%3E%3Ccircle cx="30" cy="30" r="1"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')]"></div>
+      
+      <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="font-serif text-3xl md:text-4xl font-bold mb-6">
+          Begin Your Journey with Christ Today
+        </h2>
+        <p class="text-xl text-spiritual-200 mb-8 leading-relaxed">
+          Whether you're taking your first steps in faith or seeking to deepen your relationship with God, 
+          you're welcome here. Let's walk this path together.
+        </p>
+        
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/contact" class="bg-gold-500 hover:bg-gold-600 text-spiritual-900 px-8 py-4 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center space-x-2 shadow-lg hover:shadow-xl">
+            <Heart class="w-5 h-5" />
+            <span>Get Connected</span>
+          </a>
+          
+          <a href="/bible-verses" class="border-2 border-gold-400 text-gold-400 hover:bg-gold-400 hover:text-spiritual-900 px-8 py-4 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center space-x-2">
+            <BookOpen class="w-5 h-5" />
+            <span>Find Comfort in Scripture</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  .bg-gradient-radial {
+    background: radial-gradient(circle, var(--tw-gradient-stops));
+  }
+</style>

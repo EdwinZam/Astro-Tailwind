@@ -1,0 +1,161 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import { blogPosts } from '../../data/verses.js';
+import { User, Calendar, ArrowLeft, Heart } from 'lucide-astro';
+
+export function getStaticPaths() {
+  return blogPosts.map((post) => ({
+    params: { id: post.id.toString() },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+---
+
+<Layout title={`${post.title} - Grace & Light`} description={post.excerpt}>
+  <Navbar />
+  
+  <main class="min-h-screen">
+    <!-- Hero Image -->
+    <div class="relative h-96 overflow-hidden">
+      <img 
+        src={post.image} 
+        alt={post.title}
+        class="w-full h-full object-cover"
+      />
+      <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+      
+      <!-- Back Button -->
+      <div class="absolute top-6 left-6">
+        <a 
+          href="/blog"
+          class="inline-flex items-center space-x-2 bg-white/90 hover:bg-white text-gray-900 px-4 py-2 rounded-lg transition-all duration-300"
+        >
+          <ArrowLeft class="w-4 h-4" />
+          <span>Back to Blog</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Article Content -->
+    <article class="py-16">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Article Header -->
+        <header class="mb-12">
+          <div class="flex items-center space-x-4 mb-6 text-gray-600">
+            <div class="flex items-center space-x-1">
+              <User class="w-4 h-4" />
+              <span>{post.author}</span>
+            </div>
+            <div class="flex items-center space-x-1">
+              <Calendar class="w-4 h-4" />
+              <span>{new Date(post.date).toLocaleDateString()}</span>
+            </div>
+            <div class="bg-spiritual-100 text-spiritual-700 px-3 py-1 rounded-full text-sm font-medium">
+              {post.category}
+            </div>
+          </div>
+          
+          <h1 class="font-serif text-4xl md:text-5xl font-bold text-spiritual-900 mb-6 leading-tight">
+            {post.title}
+          </h1>
+          
+          <p class="text-xl text-gray-700 leading-relaxed">
+            {post.excerpt}
+          </p>
+        </header>
+
+        <!-- Article Body -->
+        <div class="prose prose-lg max-w-none">
+          <div class="text-gray-800 leading-relaxed space-y-6" set:html={post.content} />
+        </div>
+
+        <!-- Article Footer -->
+        <footer class="mt-16 pt-8 border-t border-gray-200">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center space-x-4">
+              <div class="w-12 h-12 bg-spiritual-100 rounded-full flex items-center justify-center">
+                <User class="w-6 h-6 text-spiritual-600" />
+              </div>
+              <div>
+                <p class="font-semibold text-spiritual-900">{post.author}</p>
+                <p class="text-gray-600 text-sm">Author & Minister</p>
+              </div>
+            </div>
+            
+            <div class="flex items-center space-x-2 text-gray-600">
+              <Heart class="w-5 h-5 text-gold-500" />
+              <span class="text-sm">Written with love for God's glory</span>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </article>
+
+    <!-- Related Articles -->
+    <section class="bg-spiritual-50 py-16">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="font-serif text-3xl font-bold text-spiritual-900 mb-8 text-center">
+          Continue Reading
+        </h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {blogPosts.filter(p => p.id !== post.id).slice(0, 2).map((relatedPost) => (
+            <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden">
+              <img 
+                src={relatedPost.image} 
+                alt={relatedPost.title}
+                class="w-full h-48 object-cover"
+              />
+              <div class="p-6">
+                <h3 class="font-serif text-xl font-bold text-spiritual-900 mb-2">
+                  {relatedPost.title}
+                </h3>
+                <p class="text-gray-700 mb-4">
+                  {relatedPost.excerpt}
+                </p>
+                <a 
+                  href={`/blog/${relatedPost.id}`}
+                  class="text-spiritual-600 hover:text-spiritual-800 font-semibold transition-colors"
+                >
+                  Read Article →
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  .prose h2 {
+    @apply font-serif text-2xl font-bold text-spiritual-900 mt-8 mb-4;
+  }
+  
+  .prose h3 {
+    @apply font-serif text-xl font-semibold text-spiritual-800 mt-6 mb-3;
+  }
+  
+  .prose p {
+    @apply text-gray-800 leading-relaxed mb-4;
+  }
+  
+  .prose ul {
+    @apply list-disc ml-6 space-y-2 mb-6;
+  }
+  
+  .prose li {
+    @apply text-gray-800;
+  }
+  
+  .prose strong {
+    @apply font-semibold text-spiritual-900;
+  }
+</style>

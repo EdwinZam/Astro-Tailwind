@@ -1,0 +1,115 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import VerseCard from '../components/VerseCard.astro';
+import { verseCategories } from '../data/verses.js';
+import { Search, BookOpen, Heart } from 'lucide-astro';
+---
+
+<Layout title="Bible Verses - Grace & Light" description="Find comfort and inspiration in God's word. Browse Bible verses by emotion and life situation.">
+  <Navbar />
+  
+  <main class="min-h-screen py-16">
+    <!-- Header -->
+    <section class="bg-gradient-to-r from-spiritual-50 to-beige-50 py-16">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div class="flex justify-center mb-6">
+          <BookOpen class="w-16 h-16 text-spiritual-600" />
+        </div>
+        <h1 class="font-serif text-4xl md:text-5xl font-bold text-spiritual-900 mb-6">
+          Find Comfort in Scripture
+        </h1>
+        <p class="text-xl text-gray-700 max-w-3xl mx-auto mb-8">
+          God's word speaks to every situation and emotion. Discover verses that bring peace to your heart and strength to your soul.
+        </p>
+        
+        <!-- Search Box -->
+        <div class="max-w-2xl mx-auto">
+          <div class="relative">
+            <Search class="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+            <input 
+              type="text" 
+              id="verse-search"
+              placeholder="Search verses by keyword or emotion..."
+              class="w-full pl-12 pr-4 py-4 border-2 border-spiritual-200 rounded-xl focus:border-spiritual-500 focus:outline-none text-lg"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Verse Categories -->
+    <section class="py-16">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {Object.entries(verseCategories).map(([key, category]) => (
+          <div class="mb-16" id={key}>
+            <div class="flex items-center space-x-3 mb-8">
+              <Heart class="w-6 h-6 text-spiritual-600" />
+              <h2 class="font-serif text-3xl font-bold text-spiritual-900">{category.name}</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {category.verses.map((verse) => (
+                <VerseCard 
+                  verse={verse.verse}
+                  reference={verse.reference}
+                  category={category.name}
+                  theme={verse.theme}
+                />
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Quick Navigation -->
+    <section class="bg-spiritual-50 py-12">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h3 class="font-serif text-2xl font-bold text-spiritual-900 mb-6 text-center">
+          Quick Navigation
+        </h3>
+        <div class="flex flex-wrap justify-center gap-3">
+          {Object.entries(verseCategories).map(([key, category]) => (
+            <a 
+              href={`#${key}`}
+              class="bg-white hover:bg-spiritual-100 text-spiritual-700 px-4 py-2 rounded-full border border-spiritual-200 transition-all duration-300 text-sm font-medium hover:border-spiritual-300"
+            >
+              {category.name}
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
+
+<script>
+  // Simple search functionality
+  const searchInput = document.getElementById('verse-search');
+  const verseCards = document.querySelectorAll('.bg-white.p-6.rounded-xl');
+
+  searchInput?.addEventListener('input', (e) => {
+    const searchTerm = e.target.value.toLowerCase();
+    
+    verseCards.forEach(card => {
+      const text = card.textContent.toLowerCase();
+      const parent = card.closest('.mb-16');
+      
+      if (text.includes(searchTerm) || searchTerm === '') {
+        card.style.display = 'block';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+    
+    // Show/hide category sections based on visible cards
+    document.querySelectorAll('.mb-16').forEach(section => {
+      const visibleCards = section.querySelectorAll('.bg-white.p-6.rounded-xl[style="display: block"], .bg-white.p-6.rounded-xl:not([style])');
+      section.style.display = visibleCards.length > 0 ? 'block' : 'none';
+    });
+  });
+</script>

@@ -1,0 +1,57 @@
+---
+import { Heart, Cross, Mail, Phone } from 'lucide-astro';
+---
+
+<footer class="bg-spiritual-900 text-white mt-16">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+      <!-- Logo and Description -->
+      <div class="md:col-span-2">
+        <div class="flex items-center space-x-2 mb-4">
+          <Cross class="w-8 h-8 text-gold-400" />
+          <span class="font-serif text-2xl font-bold">Grace & Light</span>
+        </div>
+        <p class="text-spiritual-200 mb-4 max-w-md">
+          A spiritual sanctuary where faith meets fellowship. Join us on this journey of discovering God's endless love and finding comfort in His word.
+        </p>
+        <div class="flex items-center space-x-4">
+          <Heart class="w-5 h-5 text-gold-400" />
+          <span class="text-spiritual-200">"Be still and know that I am God" - Psalm 46:10</span>
+        </div>
+      </div>
+
+      <!-- Quick Links -->
+      <div>
+        <h3 class="font-semibold text-lg mb-4 text-gold-400">Quick Links</h3>
+        <ul class="space-y-2">
+          <li><a href="/" class="text-spiritual-200 hover:text-gold-400 transition-colors">Home</a></li>
+          <li><a href="/blog" class="text-spiritual-200 hover:text-gold-400 transition-colors">Blog</a></li>
+          <li><a href="/bible-verses" class="text-spiritual-200 hover:text-gold-400 transition-colors">Bible Verses</a></li>
+          <li><a href="/about" class="text-spiritual-200 hover:text-gold-400 transition-colors">About</a></li>
+          <li><a href="/contact" class="text-spiritual-200 hover:text-gold-400 transition-colors">Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact Info -->
+      <div>
+        <h3 class="font-semibold text-lg mb-4 text-gold-400">Connect With Us</h3>
+        <div class="space-y-3">
+          <div class="flex items-center space-x-2">
+            <Mail class="w-4 h-4 text-gold-400" />
+            <span class="text-spiritual-200">hello@graceandlight.com</span>
+          </div>
+          <div class="flex items-center space-x-2">
+            <Phone class="w-4 h-4 text-gold-400" />
+            <span class="text-spiritual-200">+1 (555) 123-4567</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="border-t border-spiritual-800 mt-8 pt-8 text-center">
+      <p class="text-spiritual-300">
+        &copy; 2025 Grace & Light. All rights reserved. Made with <Heart class="w-4 h-4 inline text-gold-400" /> for God's glory.
+      </p>
+    </div>
+  </div>
+</footer>
