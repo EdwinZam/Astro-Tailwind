@@ -1,11 +1,15 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Navbar from '../components/Navbar.astro';
-import Footer from '../components/Footer.astro';
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
 import { Mail, Phone, MapPin, Heart, Send } from 'lucide-astro';
+import { getI18N } from '../../i18n/utils';
+
+const { currentLocale } = Astro;
+const i18n = getI18N({ currentLocale });
 ---
 
-<Layout title="Contact Us - Grace & Light" description="Get in touch with our ministry team. We'd love to hear from you and pray with you.">
+<Layout title={i18n['contact.title']} description={i18n['contact.description']}>
   <Navbar />
   
   <main class="min-h-screen">
@@ -16,11 +20,10 @@ import { Mail, Phone, MapPin, Heart, Send } from 'lucide-astro';
           <Heart class="w-16 h-16 text-spiritual-600" />
         </div>
         <h1 class="font-serif text-4xl md:text-5xl font-bold text-spiritual-900 mb-6">
-          Connect With Us
+          {i18n['contact.header']}
         </h1>
         <p class="text-xl text-gray-700 max-w-3xl mx-auto">
-          We'd love to hear from you. Whether you need prayer, have questions about faith, 
-          or simply want to connect with our community, we're here for you.
+          {i18n['contact.header_desc']}
         </p>
       </div>
     </section>
@@ -32,14 +35,14 @@ import { Mail, Phone, MapPin, Heart, Send } from 'lucide-astro';
           <!-- Contact Form -->
           <div class="bg-white p-8 rounded-xl shadow-lg">
             <h2 class="font-serif text-2xl font-bold text-spiritual-900 mb-6">
-              Send Us a Message
+              {i18n['contact.form_title']}
             </h2>
             
             <form class="space-y-6" id="contact-form">
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label for="firstName" class="block text-sm font-medium text-gray-700 mb-2">
-                    First Name *
+                    {i18n['contact.form_firstname']}
                   </label>
                   <input 
                     type="text" 
@@ -52,7 +55,7 @@ import { Mail, Phone, MapPin, Heart, Send } from 'lucide-astro';
                 
                 <div>
                   <label for="lastName" class="block text-sm font-medium text-gray-700 mb-2">
-                    Last Name *
+                    {i18n['contact.form_lastname']}
                   </label>
                   <input 
                     type="text" 
@@ -66,7 +69,7 @@ import { Mail, Phone, MapPin, Heart, Send } from 'lucide-astro';
               
               <div>
                 <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
-                  Email Address *
+                  {i18n['contact.form_email']}
                 </label>
                 <input 
                   type="email" 
@@ -79,7 +82,7 @@ import { Mail, Phone, MapPin, Heart, Send } from 'lucide-astro';
               
               <div>
                 <label for="phone" class="block text-sm font-medium text-gray-700 mb-2">
-                  Phone Number (Optional)
+                  {i18n['contact.form_phone']}
                 </label>
                 <input 
                   type="tel" 
@@ -91,7 +94,7 @@ import { Mail, Phone, MapPin, Heart, Send } from 'lucide-astro';
               
               <div>
                 <label for="subject" class="block text-sm font-medium text-gray-700 mb-2">
-                  Subject *
+                  {i18n['contact.form_subject']}
                 </label>
                 <select 
                   id="subject" 
@@ -99,25 +102,25 @@ import { Mail, Phone, MapPin, Heart, Send } from 'lucide-astro';
                   required
                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-spiritual-500 focus:border-spiritual-500 outline-none transition-colors"
                 >
-                  <option value="">Select a subject</option>
-                  <option value="prayer-request">Prayer Request</option>
-                  <option value="faith-question">Question About Faith</option>
-                  <option value="testimony">Share a Testimony</option>
-                  <option value="general-inquiry">General Inquiry</option>
-                  <option value="technical-support">Technical Support</option>
+                  <option value="">{i18n['contact.form_subject_placeholder']}</option>
+                  <option value="prayer-request">{i18n['contact.form_subject_prayer']}</option>
+                  <option value="faith-question">{i18n['contact.form_subject_question']}</option>
+                  <option value="testimony">{i18n['contact.form_subject_testimony']}</option>
+                  <option value="general-inquiry">{i18n['contact.form_subject_general']}</option>
+                  <option value="technical-support">{i18n['contact.form_subject_support']}</option>
                 </select>
               </div>
               
               <div>
                 <label for="message" class="block text-sm font-medium text-gray-700 mb-2">
-                  Message *
+                  {i18n['contact.form_message']}
                 </label>
                 <textarea 
                   id="message" 
                   name="message"
                   rows="6"
                   required
-                  placeholder="Please share what's on your heart. We're here to listen and pray with you."
+                  placeholder={i18n['contact.form_message_placeholder']}
                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-spiritual-500 focus:border-spiritual-500 outline-none transition-colors resize-none"
                 ></textarea>
               </div>
@@ -130,7 +133,7 @@ import { Mail, Phone, MapPin, Heart, Send } from 'lucide-astro';
                   class="w-4 h-4 text-spiritual-600 border-gray-300 rounded focus:ring-spiritual-500"
                 />
                 <label for="newsletter" class="ml-2 text-sm text-gray-700">
-                  I'd like to receive weekly encouragement and updates via email
+                  {i18n['contact.form_newsletter']}
                 </label>
               </div>
               
@@ -139,7 +142,7 @@ import { Mail, Phone, MapPin, Heart, Send } from 'lucide-astro';
                 class="w-full bg-spiritual-600 hover:bg-spiritual-700 text-white py-4 px-6 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center space-x-2 shadow-lg hover:shadow-xl"
               >
                 <Send class="w-5 h-5" />
-                <span>Send Message</span>
+                <span>{i18n['contact.form_send']}</span>
               </button>
             </form>
           </div>
@@ -148,7 +151,7 @@ import { Mail, Phone, MapPin, Heart, Send } from 'lucide-astro';
           <div class="space-y-8">
             <div class="bg-spiritual-50 p-8 rounded-xl">
               <h2 class="font-serif text-2xl font-bold text-spiritual-900 mb-6">
-                Get in Touch
+                {i18n['contact.info_title']}
               </h2>
               
               <div class="space-y-6">
@@ -157,9 +160,9 @@ import { Mail, Phone, MapPin, Heart, Send } from 'lucide-astro';
                     <Mail class="w-6 h-6 text-spiritual-600" />
                   </div>
                   <div>
-                    <h3 class="font-semibold text-spiritual-900 mb-1">Email</h3>
-                    <p class="text-gray-700">hello@graceandlight.com</p>
-                    <p class="text-sm text-gray-600">We typically respond within 24 hours</p>
+                    <h3 class="font-semibold text-spiritual-900 mb-1">{i18n['contact.info_email']}</h3>
+                    <p class="text-gray-700">{i18n['contact.info_email_address']}</p>
+                    <p class="text-sm text-gray-600">{i18n['contact.info_email_response']}</p>
                   </div>
                 </div>
                 
@@ -168,9 +171,9 @@ import { Mail, Phone, MapPin, Heart, Send } from 'lucide-astro';
                     <Phone class="w-6 h-6 text-gold-600" />
                   </div>
                   <div>
-                    <h3 class="font-semibold text-spiritual-900 mb-1">Phone</h3>
-                    <p class="text-gray-700">+1 (555) 123-4567</p>
-                    <p class="text-sm text-gray-600">Available Mon-Fri, 9AM-5PM EST</p>
+                    <h3 class="font-semibold text-spiritual-900 mb-1">{i18n['contact.info_phone']}</h3>
+                    <p class="text-gray-700">{i18n['contact.info_phone_number']}</p>
+                    <p class="text-sm text-gray-600">{i18n['contact.info_phone_hours']}</p>
                   </div>
                 </div>
                 
@@ -179,9 +182,9 @@ import { Mail, Phone, MapPin, Heart, Send } from 'lucide-astro';
                     <MapPin class="w-6 h-6 text-beige-700" />
                   </div>
                   <div>
-                    <h3 class="font-semibold text-spiritual-900 mb-1">Address</h3>
-                    <p class="text-gray-700">123 Faith Street<br>Hope City, HC 12345</p>
-                    <p class="text-sm text-gray-600">Visitors welcome by appointment</p>
+                    <h3 class="font-semibold text-spiritual-900 mb-1">{i18n['contact.info_address']}</h3>
+                    <p class="text-gray-700">{i18n['contact.info_address_street']}<br>{i18n['contact.info_address_city']}</p>
+                    <p class="text-sm text-gray-600">{i18n['contact.info_address_visitors']}</p>
                   </div>
                 </div>
               </div>
@@ -192,26 +195,25 @@ import { Mail, Phone, MapPin, Heart, Send } from 'lucide-astro';
               <div class="flex items-center space-x-3 mb-4">
                 <Heart class="w-6 h-6 text-gold-600" />
                 <h3 class="font-serif text-xl font-semibold text-spiritual-900">
-                  Need Prayer?
+                  {i18n['contact.prayer_title']}
                 </h3>
               </div>
               <p class="text-gray-700 mb-4">
-                Our prayer team is committed to lifting up your needs before God. 
-                No request is too big or too small.
+                {i18n['contact.prayer_desc']}
               </p>
               <p class="text-sm text-gray-600 italic">
-                "Therefore I tell you, whatever you ask for in prayer, believe that you have received it, and it will be yours." - Mark 11:24
+                {i18n['contact.prayer_verse']}
               </p>
             </div>
 
             <!-- Response Time -->
             <div class="bg-spiritual-100 p-6 rounded-xl">
-              <h3 class="font-semibold text-spiritual-900 mb-2">Our Commitment to You</h3>
+              <h3 class="font-semibold text-spiritual-900 mb-2">{i18n['contact.commitment_title']}</h3>
               <ul class="text-sm text-gray-700 space-y-1">
-                <li>• Prayer requests receive immediate attention</li>
-                <li>• General inquiries answered within 24 hours</li>
-                <li>• All messages treated with confidentiality and care</li>
-                <li>• Personal responses from our ministry team</li>
+                <li>{i18n['contact.commitment_item1']}</li>
+                <li>{i18n['contact.commitment_item2']}</li>
+                <li>{i18n['contact.commitment_item3']}</li>
+                <li>{i18n['contact.commitment_item4']}</li>
               </ul>
             </div>
           </div>

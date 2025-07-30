@@ -1,11 +1,15 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Navbar from '../components/Navbar.astro';
-import Footer from '../components/Footer.astro';
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
 import { Heart, Users, BookOpen, Cross } from 'lucide-astro';
+import { getI18N } from '../../i18n/utils';
+
+const { currentLocale } = Astro;
+const i18n = getI18N({ currentLocale });
 ---
 
-<Layout title="About Us - Grace & Light" description="Learn about our mission to share God's love and provide spiritual encouragement through faith-based content and community.">
+<Layout title={i18n['about.title']} description={i18n['about.description']}>
   <Navbar />
   
   <main class="min-h-screen">
@@ -17,11 +21,10 @@ import { Heart, Users, BookOpen, Cross } from 'lucide-astro';
             <Cross class="w-16 h-16 text-spiritual-600" />
           </div>
           <h1 class="font-serif text-4xl md:text-5xl font-bold text-spiritual-900 mb-6">
-            About Grace & Light
+            {i18n['about.header']}
           </h1>
           <p class="text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
-            We are a community dedicated to sharing the transformative love of Jesus Christ 
-            and providing spiritual encouragement for believers in their faith journey.
+            {i18n['about.header_desc']}
           </p>
         </div>
       </div>
@@ -33,21 +36,18 @@ import { Heart, Users, BookOpen, Cross } from 'lucide-astro';
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div>
             <h2 class="font-serif text-3xl md:text-4xl font-bold text-spiritual-900 mb-6">
-              Our Mission
+              {i18n['about.mission']}
             </h2>
             <p class="text-lg text-gray-700 mb-6 leading-relaxed">
-              Grace & Light exists to be a beacon of hope in a world that often feels dark and uncertain. 
-              We believe that every person is beloved by God and deserves to experience His peace, love, and grace.
+              {i18n['about.mission_desc1']}
             </p>
             <p class="text-lg text-gray-700 mb-6 leading-relaxed">
-              Through carefully curated Bible verses, thoughtful reflections, and encouraging content, 
-              we aim to meet people wherever they are in their spiritual journey and point them toward 
-              the light of Christ.
+              {i18n['about.mission_desc2']}
             </p>
             <div class="flex items-center space-x-3">
               <Heart class="w-6 h-6 text-gold-500" />
               <span class="text-spiritual-800 font-medium italic">
-                "Let your light shine before others, that they may see your good deeds and glorify your Father in heaven." - Matthew 5:16
+                {i18n['about.mission_verse']}
               </span>
             </div>
           </div>
@@ -71,10 +71,10 @@ import { Heart, Users, BookOpen, Cross } from 'lucide-astro';
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-16">
           <h2 class="font-serif text-3xl md:text-4xl font-bold text-spiritual-900 mb-4">
-            Our Core Values
+            {i18n['about.values']}
           </h2>
           <p class="text-xl text-gray-700 max-w-3xl mx-auto">
-            These principles guide everything we do and shape how we serve our community.
+            {i18n['about.values_desc']}
           </p>
         </div>
 
@@ -84,10 +84,9 @@ import { Heart, Users, BookOpen, Cross } from 'lucide-astro';
             <div class="w-16 h-16 bg-spiritual-100 rounded-full flex items-center justify-center mx-auto mb-6">
               <BookOpen class="w-8 h-8 text-spiritual-600" />
             </div>
-            <h3 class="font-serif text-2xl font-semibold text-spiritual-900 mb-4">Scripture-Centered</h3>
+            <h3 class="font-serif text-2xl font-semibold text-spiritual-900 mb-4">{i18n['about.value1_title']}</h3>
             <p class="text-gray-700 leading-relaxed">
-              God's Word is our foundation. Every piece of content is rooted in biblical truth and 
-              designed to help believers grow in their understanding of Scripture.
+              {i18n['about.value1_desc']}
             </p>
           </div>
 
@@ -96,10 +95,9 @@ import { Heart, Users, BookOpen, Cross } from 'lucide-astro';
             <div class="w-16 h-16 bg-gold-100 rounded-full flex items-center justify-center mx-auto mb-6">
               <Heart class="w-8 h-8 text-gold-600" />
             </div>
-            <h3 class="font-serif text-2xl font-semibold text-spiritual-900 mb-4">Love-Driven</h3>
+            <h3 class="font-serif text-2xl font-semibold text-spiritual-900 mb-4">{i18n['about.value2_title']}</h3>
             <p class="text-gray-700 leading-relaxed">
-              Christ's love compels us to serve others with compassion, grace, and understanding. 
-              We believe love is the greatest commandment and the key to transformation.
+              {i18n['about.value2_desc']}
             </p>
           </div>
 
@@ -108,10 +106,9 @@ import { Heart, Users, BookOpen, Cross } from 'lucide-astro';
             <div class="w-16 h-16 bg-beige-100 rounded-full flex items-center justify-center mx-auto mb-6">
               <Users class="w-8 h-8 text-beige-700" />
             </div>
-            <h3 class="font-serif text-2xl font-semibold text-spiritual-900 mb-4">Community-Focused</h3>
+            <h3 class="font-serif text-2xl font-semibold text-spiritual-900 mb-4">{i18n['about.value3_title']}</h3>
             <p class="text-gray-700 leading-relaxed">
-              We believe faith grows best in community. Our goal is to create a welcoming space 
-              where believers can encourage one another and grow together.
+              {i18n['about.value3_desc']}
             </p>
           </div>
         </div>
@@ -123,10 +120,10 @@ import { Heart, Users, BookOpen, Cross } from 'lucide-astro';
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-16">
           <h2 class="font-serif text-3xl md:text-4xl font-bold text-spiritual-900 mb-4">
-            Our Team
+            {i18n['about.team']}
           </h2>
           <p class="text-xl text-gray-700 max-w-3xl mx-auto">
-            Meet the dedicated servants who help bring Grace & Light to life.
+            {i18n['about.team_desc']}
           </p>
         </div>
 
@@ -136,34 +133,34 @@ import { Heart, Users, BookOpen, Cross } from 'lucide-astro';
             <div class="w-24 h-24 bg-spiritual-100 rounded-full flex items-center justify-center mx-auto mb-4">
               <span class="text-2xl font-bold text-spiritual-600">PD</span>
             </div>
-            <h3 class="font-serif text-xl font-semibold text-spiritual-900 mb-2">Pastor David</h3>
-            <p class="text-spiritual-600 mb-3">Lead Pastor & Writer</p>
+            <h3 class="font-serif text-xl font-semibold text-spiritual-900 mb-2">{i18n['about.team_member1_name']}</h3>
+            <p class="text-spiritual-600 mb-3">{i18n['about.team_member1_role']}</p>
             <p class="text-gray-700 text-sm leading-relaxed">
-              With over 15 years in ministry, Pastor David brings deep theological insight and pastoral heart to our content creation.
+              {i18n['about.team_member1_desc']}
             </p>
           </div>
 
           <!-- Sister Mary Catherine -->
           <div class="bg-white p-6 rounded-xl shadow-lg text-center">
             <div class="w-24 h-24 bg-gold-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <span class="text-2xl font-bold text-gold-600">MC</span>
+              <span class="text-2xl font-bold text-gold-600">HM</span>
             </div>
-            <h3 class="font-serif text-xl font-semibold text-spiritual-900 mb-2">Sister Mary Catherine</h3>
-            <p class="text-spiritual-600 mb-3">Content Editor & Prayer Coordinator</p>
+            <h3 class="font-serif text-xl font-semibold text-spiritual-900 mb-2">{i18n['about.team_member2_name']}</h3>
+            <p class="text-spiritual-600 mb-3">{i18n['about.team_member2_role']}</p>
             <p class="text-gray-700 text-sm leading-relaxed">
-              A devoted servant with a gift for writing, Sister Mary Catherine ensures our content reflects God's heart for His people.
+              {i18n['about.team_member2_desc']}
             </p>
           </div>
 
           <!-- Pastor James -->
           <div class="bg-white p-6 rounded-xl shadow-lg text-center">
             <div class="w-24 h-24 bg-beige-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <span class="text-2xl font-bold text-beige-700">PJ</span>
+              <span class="text-2xl font-bold text-beige-700">PS</span>
             </div>
-            <h3 class="font-serif text-xl font-semibold text-spiritual-900 mb-2">Pastor James</h3>
-            <p class="text-spiritual-600 mb-3">Youth Pastor & Outreach Director</p>
+            <h3 class="font-serif text-xl font-semibold text-spiritual-900 mb-2">{i18n['about.team_member3_name']}</h3>
+            <p class="text-spiritual-600 mb-3">{i18n['about.team_member3_role']}</p>
             <p class="text-gray-700 text-sm leading-relaxed">
-              Pastor James brings fresh perspective and connects with believers of all ages through relatable, practical teachings.
+              {i18n['about.team_member3_desc']}
             </p>
           </div>
         </div>
@@ -174,22 +171,21 @@ import { Heart, Users, BookOpen, Cross } from 'lucide-astro';
     <section class="py-20 bg-spiritual-900 text-white">
       <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <h2 class="font-serif text-3xl md:text-4xl font-bold mb-6">
-          Join Our Community
+          {i18n['about.cta_title']}
         </h2>
         <p class="text-xl text-spiritual-200 mb-8 leading-relaxed">
-          Whether you're seeking comfort, looking for spiritual growth, or wanting to connect with fellow believers, 
-          you have a place here. Let's walk this journey of faith together.
+          {i18n['about.cta_desc']}
         </p>
         
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
           <a href="/contact" class="bg-gold-500 hover:bg-gold-600 text-spiritual-900 px-8 py-4 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center space-x-2">
             <Heart class="w-5 h-5" />
-            <span>Get in Touch</span>
+            <span>{i18n['about.cta_contact']}</span>
           </a>
           
           <a href="/bible-verses" class="border-2 border-gold-400 text-gold-400 hover:bg-gold-400 hover:text-spiritual-900 px-8 py-4 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center space-x-2">
             <BookOpen class="w-5 h-5" />
-            <span>Explore Scripture</span>
+            <span>{i18n['about.cta_explore']}</span>
           </a>
         </div>
       </div>

@@ -1,12 +1,20 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Navbar from '../components/Navbar.astro';
-import Footer from '../components/Footer.astro';
-import { blogPosts } from '../data/verses.js';
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import { getCollection } from 'astro:content';
 import { BookOpen, User, Calendar, ArrowRight } from 'lucide-astro';
+import { getI18N } from '../../i18n/utils';
+
+const { currentLocale } = Astro;
+const i18n = getI18N({ currentLocale });
+
+const blogPosts = await getCollection('blog', ({ id }) => {
+  return id.startsWith(currentLocale);
+});
 ---
 
-<Layout title="Blog - Grace & Light" description="Spiritual reflections, Christian insights, and faith-based articles to encourage and inspire your journey with God.">
+<Layout title={i18n['blog.title']} description={i18n['blog.description']}>
   <Navbar />
   
   <main class="min-h-screen">
@@ -17,11 +25,10 @@ import { BookOpen, User, Calendar, ArrowRight } from 'lucide-astro';
           <BookOpen class="w-16 h-16 text-spiritual-600" />
         </div>
         <h1 class="font-serif text-4xl md:text-5xl font-bold text-spiritual-900 mb-6">
-          Spiritual Reflections
+          {i18n['blog.header']}
         </h1>
         <p class="text-xl text-gray-700 max-w-3xl mx-auto">
-          Discover encouraging articles, biblical insights, and practical wisdom for your Christian journey. 
-          Let these reflections inspire and strengthen your faith.
+          {i18n['blog.header_desc']}
         </p>
       </div>
     </section>
@@ -34,8 +41,8 @@ import { BookOpen, User, Calendar, ArrowRight } from 'lucide-astro';
             <article class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group">
               <div class="aspect-w-16 aspect-h-9 overflow-hidden">
                 <img 
-                  src={post.image} 
-                  alt={post.title}
+                  src={post.data.image.url} 
+                  alt={post.data.image.alt}
                   class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
                 />
               </div>
@@ -44,33 +51,35 @@ import { BookOpen, User, Calendar, ArrowRight } from 'lucide-astro';
                 <div class="flex items-center space-x-4 mb-4 text-sm text-gray-600">
                   <div class="flex items-center space-x-1">
                     <User class="w-4 h-4" />
-                    <span>{post.author}</span>
+                    <span>{post.data.author}</span>
                   </div>
                   <div class="flex items-center space-x-1">
                     <Calendar class="w-4 h-4" />
-                    <span>{new Date(post.date).toLocaleDateString()}</span>
+                    <span>{new Date(post.data.pubDate).toLocaleDateString()}</span>
                   </div>
                 </div>
                 
                 <div class="mb-3">
-                  <span class="bg-spiritual-100 text-spiritual-700 px-3 py-1 rounded-full text-sm font-medium">
-                    {post.category}
-                  </span>
+                  {post.data.tags.map(tag => (
+                    <span class="bg-spiritual-100 text-spiritual-700 px-3 py-1 rounded-full text-sm font-medium mr-2">
+                      {tag}
+                    </span>
+                  ))}
                 </div>
                 
                 <h2 class="font-serif text-xl font-bold text-spiritual-900 mb-3 group-hover:text-spiritual-700 transition-colors">
-                  {post.title}
+                  {post.data.title}
                 </h2>
                 
                 <p class="text-gray-700 mb-4 leading-relaxed">
-                  {post.excerpt}
+                  {post.data.description}
                 </p>
                 
                 <a 
-                  href={`/blog/${post.id}`}
+                  href={`/blog/${post.slug}`}
                   class="inline-flex items-center space-x-2 text-spiritual-600 hover:text-spiritual-800 font-semibold transition-colors group/link"
                 >
-                  <span>Read More</span>
+                  <span>{i18n['blog.read_more']}</span>
                   <ArrowRight class="w-4 h-4 group-hover/link:translate-x-1 transition-transform" />
                 </a>
               </div>
@@ -84,10 +93,10 @@ import { BookOpen, User, Calendar, ArrowRight } from 'lucide-astro';
     <section class="bg-spiritual-900 text-white py-16">
       <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <h2 class="font-serif text-3xl font-bold mb-4">
-          Stay Connected with Our Community
+          {i18n['blog.stay_connected']}
         </h2>
         <p class="text-xl text-spiritual-200 mb-8">
-          Join our newsletter to receive weekly reflections, Bible verses, and encouragement delivered to your inbox.
+          {i18n['blog.newsletter_desc']}
         </p>
         
         <div class="max-w-md mx-auto flex">
@@ -97,7 +106,7 @@ import { BookOpen, User, Calendar, ArrowRight } from 'lucide-astro';
             class="flex-1 px-4 py-3 rounded-l-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-gold-400"
           />
           <button class="bg-gold-500 hover:bg-gold-600 px-6 py-3 rounded-r-lg font-semibold transition-colors">
-            Subscribe
+            {i18n['blog.subscribe']}
           </button>
         </div>
       </div>

@@ -1,0 +1,196 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import { Heart, Users, BookOpen, Cross } from 'lucide-astro';
+import { getI18N } from '../../i18n/utils';
+
+const { currentLocale } = Astro;
+const i18n = getI18N({ currentLocale });
+---
+
+<Layout title={i18n['about.title']} description={i18n['about.description']}>
+  <Navbar />
+  
+  <main class="min-h-screen">
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-r from-spiritual-50 to-beige-50 py-20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center">
+          <div class="flex justify-center mb-6">
+            <Cross class="w-16 h-16 text-spiritual-600" />
+          </div>
+          <h1 class="font-serif text-4xl md:text-5xl font-bold text-spiritual-900 mb-6">
+            {i18n['about.header']}
+          </h1>
+          <p class="text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
+            {i18n['about.header_desc']}
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section class="py-20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div>
+            <h2 class="font-serif text-3xl md:text-4xl font-bold text-spiritual-900 mb-6">
+              {i18n['about.mission']}
+            </h2>
+            <p class="text-lg text-gray-700 mb-6 leading-relaxed">
+              {i18n['about.mission_desc1']}
+            </p>
+            <p class="text-lg text-gray-700 mb-6 leading-relaxed">
+              {i18n['about.mission_desc2']}
+            </p>
+            <div class="flex items-center space-x-3">
+              <Heart class="w-6 h-6 text-gold-500" />
+              <span class="text-spiritual-800 font-medium italic">
+                {i18n['about.mission_verse']}
+              </span>
+            </div>
+          </div>
+          
+          <div class="relative">
+            <img 
+              src="https://images.pexels.com/photos/531756/pexels-photo-531756.jpeg?auto=compress&cs=tinysrgb&w=800" 
+              alt="Hands in prayer"
+              class="w-full rounded-xl shadow-lg"
+            />
+            <div class="absolute -bottom-6 -right-6 w-24 h-24 bg-gold-100 rounded-full flex items-center justify-center shadow-lg">
+              <Cross class="w-12 h-12 text-gold-600" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="py-20 bg-spiritual-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="font-serif text-3xl md:text-4xl font-bold text-spiritual-900 mb-4">
+            {i18n['about.values']}
+          </h2>
+          <p class="text-xl text-gray-700 max-w-3xl mx-auto">
+            {i18n['about.values_desc']}
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <!-- Faith -->
+          <div class="bg-white p-8 rounded-xl shadow-lg text-center">
+            <div class="w-16 h-16 bg-spiritual-100 rounded-full flex items-center justify-center mx-auto mb-6">
+              <BookOpen class="w-8 h-8 text-spiritual-600" />
+            </div>
+            <h3 class="font-serif text-2xl font-semibold text-spiritual-900 mb-4">{i18n['about.value1_title']}</h3>
+            <p class="text-gray-700 leading-relaxed">
+              {i18n['about.value1_desc']}
+            </p>
+          </div>
+
+          <!-- Love -->
+          <div class="bg-white p-8 rounded-xl shadow-lg text-center">
+            <div class="w-16 h-16 bg-gold-100 rounded-full flex items-center justify-center mx-auto mb-6">
+              <Heart class="w-8 h-8 text-gold-600" />
+            </div>
+            <h3 class="font-serif text-2xl font-semibold text-spiritual-900 mb-4">{i18n['about.value2_title']}</h3>
+            <p class="text-gray-700 leading-relaxed">
+              {i18n['about.value2_desc']}
+            </p>
+          </div>
+
+          <!-- Community -->
+          <div class="bg-white p-8 rounded-xl shadow-lg text-center">
+            <div class="w-16 h-16 bg-beige-100 rounded-full flex items-center justify-center mx-auto mb-6">
+              <Users class="w-8 h-8 text-beige-700" />
+            </div>
+            <h3 class="font-serif text-2xl font-semibold text-spiritual-900 mb-4">{i18n['about.value3_title']}</h3>
+            <p class="text-gray-700 leading-relaxed">
+              {i18n['about.value3_desc']}
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="py-20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="font-serif text-3xl md:text-4xl font-bold text-spiritual-900 mb-4">
+            {i18n['about.team']}
+          </h2>
+          <p class="text-xl text-gray-700 max-w-3xl mx-auto">
+            {i18n['about.team_desc']}
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <!-- Pastor David -->
+          <div class="bg-white p-6 rounded-xl shadow-lg text-center">
+            <div class="w-24 h-24 bg-spiritual-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <span class="text-2xl font-bold text-spiritual-600">PD</span>
+            </div>
+            <h3 class="font-serif text-xl font-semibold text-spiritual-900 mb-2">{i18n['about.team_member1_name']}</h3>
+            <p class="text-spiritual-600 mb-3">{i18n['about.team_member1_role']}</p>
+            <p class="text-gray-700 text-sm leading-relaxed">
+              {i18n['about.team_member1_desc']}
+            </p>
+          </div>
+
+          <!-- Sister Mary Catherine -->
+          <div class="bg-white p-6 rounded-xl shadow-lg text-center">
+            <div class="w-24 h-24 bg-gold-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <span class="text-2xl font-bold text-gold-600">MC</span>
+            </div>
+            <h3 class="font-serif text-xl font-semibold text-spiritual-900 mb-2">{i18n['about.team_member2_name']}</h3>
+            <p class="text-spiritual-600 mb-3">{i18n['about.team_member2_role']}</p>
+            <p class="text-gray-700 text-sm leading-relaxed">
+              {i18n['about.team_member2_desc']}
+            </p>
+          </div>
+
+          <!-- Pastor James -->
+          <div class="bg-white p-6 rounded-xl shadow-lg text-center">
+            <div class="w-24 h-24 bg-beige-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <span class="text-2xl font-bold text-beige-700">PJ</span>
+            </div>
+            <h3 class="font-serif text-xl font-semibold text-spiritual-900 mb-2">{i18n['about.team_member3_name']}</h3>
+            <p class="text-spiritual-600 mb-3">{i18n['about.team_member3_role']}</p>
+            <p class="text-gray-700 text-sm leading-relaxed">
+              {i18n['about.team_member3_desc']}
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-20 bg-spiritual-900 text-white">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="font-serif text-3xl md:text-4xl font-bold mb-6">
+          {i18n['about.cta_title']}
+        </h2>
+        <p class="text-xl text-spiritual-200 mb-8 leading-relaxed">
+          {i18n['about.cta_desc']}
+        </p>
+        
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/contact" class="bg-gold-500 hover:bg-gold-600 text-spiritual-900 px-8 py-4 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center space-x-2">
+            <Heart class="w-5 h-5" />
+            <span>{i18n['about.cta_contact']}</span>
+          </a>
+          
+          <a href="/bible-verses" class="border-2 border-gold-400 text-gold-400 hover:bg-gold-400 hover:text-spiritual-900 px-8 py-4 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center space-x-2">
+            <BookOpen class="w-5 h-5" />
+            <span>{i18n['about.cta_explore']}</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>

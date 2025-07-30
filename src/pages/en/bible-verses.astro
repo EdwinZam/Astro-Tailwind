@@ -1,13 +1,17 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Navbar from '../components/Navbar.astro';
-import Footer from '../components/Footer.astro';
-import VerseCard from '../components/VerseCard.astro';
-import { verseCategories } from '../data/verses.js';
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import VerseCard from '../../components/VerseCard.astro';
+import { verseCategories } from '../../data/verses.js';
 import { Search, BookOpen, Heart } from 'lucide-astro';
+import { getI18N } from '../../i18n/utils';
+
+const { currentLocale } = Astro;
+const i18n = getI18N({ currentLocale });
 ---
 
-<Layout title="Bible Verses - Grace & Light" description="Find comfort and inspiration in God's word. Browse Bible verses by emotion and life situation.">
+<Layout title={i18n['verses.title']} description={i18n['verses.description']}>
   <Navbar />
   
   <main class="min-h-screen py-16">
@@ -18,10 +22,10 @@ import { Search, BookOpen, Heart } from 'lucide-astro';
           <BookOpen class="w-16 h-16 text-spiritual-600" />
         </div>
         <h1 class="font-serif text-4xl md:text-5xl font-bold text-spiritual-900 mb-6">
-          Find Comfort in Scripture
+          {i18n['verses.header']}
         </h1>
         <p class="text-xl text-gray-700 max-w-3xl mx-auto mb-8">
-          God's word speaks to every situation and emotion. Discover verses that bring peace to your heart and strength to your soul.
+          {i18n['verses.header_desc']}
         </p>
         
         <!-- Search Box -->
@@ -31,7 +35,7 @@ import { Search, BookOpen, Heart } from 'lucide-astro';
             <input 
               type="text" 
               id="verse-search"
-              placeholder="Search verses by keyword or emotion..."
+              placeholder={i18n['verses.search_placeholder']}
               class="w-full pl-12 pr-4 py-4 border-2 border-spiritual-200 rounded-xl focus:border-spiritual-500 focus:outline-none text-lg"
             />
           </div>
@@ -68,7 +72,7 @@ import { Search, BookOpen, Heart } from 'lucide-astro';
     <section class="bg-spiritual-50 py-12">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h3 class="font-serif text-2xl font-bold text-spiritual-900 mb-6 text-center">
-          Quick Navigation
+          {i18n['verses.quick_nav']}
         </h3>
         <div class="flex flex-wrap justify-center gap-3">
           {Object.entries(verseCategories).map(([key, category]) => (
