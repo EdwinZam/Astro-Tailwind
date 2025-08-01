@@ -1,0 +1,89 @@
+---
+// src/components/AccessibilityToolbar.astro
+---
+<div id="accessibility-toolbar" class="fixed right-0 top-1/2 -translate-y-1/2 bg-gray-800 text-white p-4 rounded-l-lg shadow-lg">
+  <div class="flex flex-col space-y-4">
+    <button id="contrast-toggle" aria-label="Toggle High Contrast" class="p-2 bg-gray-700 rounded-full hover:bg-gray-600">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a7.5 7.5 0 000 15.292V4.354z" />
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a7.5 7.5 0 010 15.292V4.354z" clip-rule="evenodd" fill-rule="evenodd" />
+      </svg>
+    </button>
+    <button id="font-increase" aria-label="Increase Font Size" class="p-2 bg-gray-700 rounded-full hover:bg-gray-600">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+      </svg>
+    </button>
+    <button id="font-decrease" aria-label="Decrease Font Size" class="p-2 bg-gray-700 rounded-full hover:bg-gray-600">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 12H6" />
+      </svg>
+    </button>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const contrastToggle = document.getElementById('contrast-toggle');
+    const fontIncrease = document.getElementById('font-increase');
+    const fontDecrease = document.getElementById('font-decrease');
+    const html = document.documentElement;
+
+    // High Contrast
+    const applyContrast = (isHighContrast) => {
+      if (isHighContrast) {
+        html.setAttribute('data-theme', 'dark');
+      } else {
+        html.removeAttribute('data-theme');
+      }
+    };
+
+    const savedContrast = localStorage.getItem('highContrast') === 'true';
+    applyContrast(savedContrast);
+
+    contrastToggle.addEventListener('click', () => {
+      const isHighContrast = html.getAttribute('data-theme') === 'dark';
+      applyContrast(!isHighContrast);
+      localStorage.setItem('highContrast', !isHighContrast);
+    });
+
+    // Font Size
+    let currentFontSize = parseFloat(getComputedStyle(html).fontSize);
+    fontIncrease.addEventListener('click', () => {
+      currentFontSize += 2;
+      html.style.fontSize = `${currentFontSize}px`;
+    });
+
+    fontDecrease.addEventListener('click', () => {
+      currentFontSize -= 2;
+      html.style.fontSize = `${currentFontSize}px`;
+    });
+  });
+</script>
+
+<style>
+  html[data-theme='dark'] {
+    background-color: #000 !important;
+    color: #fff !important;
+    filter: invert(1) hue-rotate(180deg);
+  }
+
+  html[data-theme='dark'] img,
+  html[data-theme='dark'] video,
+  html[data-theme='dark'] iframe {
+    filter: invert(1) hue-rotate(180deg);
+  }
+
+  html[data-theme='dark'] a {
+    color: #ffff00 !important;
+  }
+
+  html[data-theme='dark'] button, 
+  html[data-theme='dark'] input, 
+  html[data-theme='dark'] select, 
+  html[data-theme='dark'] textarea {
+    background-color: #333 !important;
+    color: #fff !important;
+    border-color: #fff !important;
+  }
+</style>
