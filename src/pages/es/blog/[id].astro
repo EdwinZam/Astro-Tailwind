@@ -1,0 +1,30 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import Navbar from '../../../components/Navbar.astro';
+import Footer from '../../../components/Footer.astro';
+import { getI18N } from '../../../i18n/utils';
+import { blogPosts_es } from '../../../data/verses_es.js';
+
+export function getStaticPaths() {
+  return blogPosts_es.map(post => ({
+    params: { id: post.id.toString() },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { currentLocale } = Astro;
+const i18n = getI18N({ currentLocale });
+---
+<Layout title={post.title}>
+  <Navbar />
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <article>
+      <h1 class="font-serif text-4xl font-bold text-spiritual-900 mb-4">{post.title}</h1>
+      <p class="text-lg text-gray-600 mb-8">{post.excerpt}</p>
+      <img src={post.image} alt={post.title} class="rounded-lg shadow-lg mb-8">
+      <div class="prose max-w-none" set:html={post.content} />
+    </article>
+  </main>
+  <Footer />
+</Layout>

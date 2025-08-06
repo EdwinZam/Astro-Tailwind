@@ -2,16 +2,12 @@
 import Layout from '../../layouts/Layout.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
-import { getCollection } from 'astro:content';
+import { blogPosts } from '../../data/verses.js';
 import { BookOpen, User, Calendar, ArrowRight } from 'lucide-astro';
 import { getI18N } from '../../i18n/utils';
 
 const { currentLocale } = Astro;
 const i18n = getI18N({ currentLocale });
-
-const blogPosts = await getCollection('blog', ({ id }) => {
-  return id.startsWith(currentLocale);
-});
 ---
 
 <Layout title={i18n['blog.title']} description={i18n['blog.description']}>
@@ -41,8 +37,8 @@ const blogPosts = await getCollection('blog', ({ id }) => {
             <article class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group">
               <div class="aspect-w-16 aspect-h-9 overflow-hidden">
                 <img 
-                  src={post.data.image.url} 
-                  alt={post.data.image.alt}
+                  src={post.image} 
+                  alt={post.title}
                   class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
                 />
               </div>
@@ -51,32 +47,30 @@ const blogPosts = await getCollection('blog', ({ id }) => {
                 <div class="flex items-center space-x-4 mb-4 text-sm text-gray-600">
                   <div class="flex items-center space-x-1">
                     <User class="w-4 h-4" />
-                    <span>{post.data.author}</span>
+                    <span>{post.author}</span>
                   </div>
                   <div class="flex items-center space-x-1">
                     <Calendar class="w-4 h-4" />
-                    <span>{new Date(post.data.pubDate).toLocaleDateString()}</span>
+                    <span>{new Date(post.date).toLocaleDateString()}</span>
                   </div>
                 </div>
                 
                 <div class="mb-3">
-                  {post.data.tags.map(tag => (
-                    <span class="bg-spiritual-100 text-spiritual-700 px-3 py-1 rounded-full text-sm font-medium mr-2">
-                      {tag}
-                    </span>
-                  ))}
+                  <span class="bg-spiritual-100 text-spiritual-700 px-3 py-1 rounded-full text-sm font-medium mr-2">
+                    {post.category}
+                  </span>
                 </div>
                 
                 <h2 class="font-serif text-xl font-bold text-spiritual-900 mb-3 group-hover:text-spiritual-700 transition-colors">
-                  {post.data.title}
+                  {post.title}
                 </h2>
                 
                 <p class="text-gray-700 mb-4 leading-relaxed">
-                  {post.data.description}
+                  {post.excerpt}
                 </p>
                 
                 <a 
-                  href={`/blog/${post.slug}`}
+                  href={`/en/blog/${post.id}`}
                   class="inline-flex items-center space-x-2 text-spiritual-600 hover:text-spiritual-800 font-semibold transition-colors group/link"
                 >
                   <span>{i18n['blog.read_more']}</span>
